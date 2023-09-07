@@ -181,7 +181,7 @@
         <buildah.image-name>${project.artifactId}:${project.version}</buildah.image-name>
         <buildah.dockerfile>${docker-file}</buildah.dockerfile>
         <buildah.tls-verify>false</buildah.tls-verify>
-        <skopeo.dest-tls-verify>true</skopeo.dest-tls-verify>
+        <skopeo.dest-tls-verify>false</skopeo.dest-tls-verify>
         <skopeo.dest-registry>${container-registry}</skopeo.dest-registry>
       </properties>
       <build>
