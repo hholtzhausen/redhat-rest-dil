@@ -11,6 +11,18 @@
     <version>0.2.16-SNAPSHOT</version>
   </parent>
 
+  <distributionManagement>
+    <repository>
+      <id>releases-local</id>
+      <url>${localReleaseURL}</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>snapshots-local</id>
+      <url>${localSnapshotURL}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
