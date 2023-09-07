@@ -145,12 +145,21 @@
     </plugins>
   </build>
   <profiles>
+      <id>dev</id>
+      <properties>
+        <docker-file-tmpl>docker/Dockerfile.quarkus-app</docker-file-tmpl>
+        <docker-file>target/classes/${docker-file-tmpl}</docker-file>
+        <base-image>localhost/bitbuild-run-java:1.3</base-image>
+        <container-registry>docker://image-registry.openshift-image-registry.svc:5000/middleware</container-registry>
+      </properties>
+    </profile>
     <profile>
       <id>test</id>
       <properties>
         <docker-file-tmpl>docker/Dockerfile.quarkus-app</docker-file-tmpl>
         <docker-file>target/classes/${docker-file-tmpl}</docker-file>
-        <base-image>localhost/bitbuild-run-java:1.3</base-image>
+        <base-image>image-registry.openshift-image-registry.svc:5000/bitbuild/bitbuild-run-java:1.3</base-image>
+        <container-registry>docker://image-registry.openshift-image-registry.svc:5000/middleware</container-registry>
       </properties>
     </profile>
     <profile>
@@ -159,9 +168,8 @@
         <buildah.image-name>${project.artifactId}:${project.version}</buildah.image-name>
         <buildah.dockerfile>${docker-file}</buildah.dockerfile>
         <buildah.tls-verify>false</buildah.tls-verify>
-        <skopeo.dest-creds></skopeo.dest-creds>
         <skopeo.dest-tls-verify>true</skopeo.dest-tls-verify>
-        <skopeo.dest-registry></skopeo.dest-registry>
+        <skopeo.dest-registry>${container-registry}</skopeo.dest-registry>
       </properties>
       <build>
         <resources>
