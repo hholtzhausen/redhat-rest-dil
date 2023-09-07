@@ -1,0 +1,12 @@
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://camel.apache.org/schema/spring"
+        xsi:schemaLocation="
+            http://camel.apache.org/schema/spring
+            http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <route id="xmlDslPerson">
+      <from uri="direct:xmlDslPerson"/>
+      <to uri="seda:mockQueue"/>
+      <to uri="dataformat:jaxb:unmarshal?contextPath=org.examples.person"/>
+    </route>
+</routes>

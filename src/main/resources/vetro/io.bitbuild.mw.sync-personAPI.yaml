@@ -1,0 +1,16 @@
+name: PersonAPI
+
+syncPipeline:
+  request:
+    fromUri: seda:personAPI
+    validateUri: dataformat:jaxb:marshal?contextPath=org.examples.person,validator:xsd/person.xsd
+#    enrichUri:
+#    xformUri:
+#    routingUri:
+    operateUri: seda:mockQueue?waitForTaskToComplete=Always
+  response:
+    validateUri: validator:xsd/person.xsd
+#    enrichUri:
+    xformUri: dataformat:jaxb:unmarshal?contextPath=org.examples.person
+  exception:
+    xformUri: dataformat:jaxb:unmarshal?contextPath=org.examples.person
