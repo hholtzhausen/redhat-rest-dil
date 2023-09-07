@@ -145,6 +145,7 @@
     </plugins>
   </build>
   <profiles>
+    <profile>
       <id>dev</id>
       <properties>
         <docker-file-tmpl>docker/Dockerfile.quarkus-app</docker-file-tmpl>
